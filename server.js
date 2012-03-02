@@ -1,3 +1,4 @@
-require("./main.js");
+require('coffee-script');
+require("./main");
 
 // listen(14904);

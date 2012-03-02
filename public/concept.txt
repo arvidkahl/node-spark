@@ -1,0 +1,25 @@
+# spark
+
+modules
+=======
+
+* express
+* everyauth
+* coffee-script
+* less
+* jade
+
+
+db structure
+============
+
+- image
+    - _id 
+    - url
+    - name
+    - stories
+        - username
+        - title
+	    - tags
+	    - text
+	

@@ -1,5 +1,33 @@
-- each article in articles
-    .article
-        h1= article.title
-        span.created= article.created_at
-        span.body= article.body
+div.navbar.navbar-fixed-top
+  div.navbar-inner
+    div.container-fluid
+      a(href='#').brand #{title}
+      div.nav-collapse
+        ul.nav
+          li.active
+            a(href='#') Home
+          li
+            a(href='#') About
+          li
+            a(href='#') Contact
+        p.navbar-text.pull-right
+          - if (typeof(user) != "undefined")
+            span= "Logged in as "+user.name+" "
+            a(href="/logout")= "Logout"
+          - else
+            a(href= "/auth/twitter")= "Login with Twitter"          
+div.container
+  h1 #{title}
+  div.row
+    div.span10
+        - each article in articles
+          .article
+            h1= article.title
+            span.created= article.created_at
+            span.body= article.body
+    div.span2
+      h3 Secondary content
+  footer
+    p &copy; Company 2011
+
+    
