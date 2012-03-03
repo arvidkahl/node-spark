@@ -3683,3 +3683,6 @@ a.thumbnail:hover {
 body {
   padding-top: 60px;
 }
+h1 {
+  color: green;
+}

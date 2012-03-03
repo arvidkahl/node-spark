@@ -6,6 +6,11 @@ less = require 'less'
 fs = require 'fs'
 md = require('node-markdown').Markdown
 auth = require 'auth'
+config = require 'config'
+
+#session perstistence
+connectCouchDB = require('connect-couchdb')(exp)
+
 #auth.helpExpress app
 
 # App Configuration
@@ -17,18 +22,13 @@ app.configure () ->
 	app.use exp.methodOverride()
 	app.use exp.bodyParser()
 	app.use exp.cookieParser()
-	app.use exp.session {secret: 'nawollenwirdochmalsehn'}
-	app.use exp.static __dirname + '/public'
-	#app.use '/public/less' exp.static(__dirname + '/public/less')
-	
+	app.use exp.session {secret: 'nawollenwirdochmalsehn', store: new connectCouchDB({host: config.host,name: 'sessions',  reapInterval: 600000, compactInterval: 300000})}
+	app.use exp.static __dirname + '/public'	
 	app.use auth.middleware()
- 
-#exp.compiler.compilers.less.compile = (str, fn) =>
-#	less.render str, { compress : true }, fn	
 
 # Articler Class
 Articler = require('./articler').Articler
-article = new Articler 'http://arvidkahl.iriscouch.com', 5984
+article = new Articler config.host, config.port
 
 app.get '/', (req, res) ->
 	if (req.session.auth)		

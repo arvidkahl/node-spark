@@ -22,12 +22,22 @@ div.container
     div.span10
         - each article in articles
           .article
-            h1= article.title
+            h2= article.title
             span.created= article.created_at
             span.body= article.body
     div.span2
       h3 Secondary content
   footer
-    p &copy; Company 2011
-
-    
+    p &copy; 
+      a(href= "http://www.arvidkahl.de")="Arvid Kahl"
+      | . Website is built with 
+      a(href= "http://nodejs.org")= "Node.js"
+      |, 
+      a(href= "http://www.http://expressjs.com")="Express"
+      |, 
+      a(href= "http://couchdb.apache.org/")="CouchDB"
+      |, 
+      a(href= "http://lesscss.org/")="LESS" 
+      |  and 
+      a(href= "http://coffeescript.org/")="Coffee-Script"
+      |.
