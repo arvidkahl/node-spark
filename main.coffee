@@ -7,7 +7,7 @@ less = require 'less'
 fs = require 'fs'
 md = require('node-markdown').Markdown
 auth = require './auth.coffee'
-config = require 'config'
+config = require './config.coffee'
 
 #session perstistence
 connectCouchDB = require('connect-couchdb')(exp)
