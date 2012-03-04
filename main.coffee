@@ -18,11 +18,11 @@ app.configure () ->
 	app.set 'view engine', 'jade'
 	app.set 'views', __dirname + '/views'
 	app.use exp.errorHandler { dumpExceptions: true, showStack: true }
-	app.use exp.compiler { src: __dirname + '/public', dest: __dirname + '/public', enable: ['less'] }
 	app.use exp.methodOverride()
 	app.use exp.bodyParser()
 	app.use exp.cookieParser()
 	app.use exp.session {secret: 'nawollenwirdochmalsehn', store: new connectCouchDB({host: config.host,name: 'sessions',  reapInterval: 600000, compactInterval: 300000})}
+	app.use exp.compiler { src: __dirname + '/public', dest: __dirname + '/public', enable: ['less'] }
 	app.use exp.static __dirname + '/public'	
 	app.use auth.middleware()
 

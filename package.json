@@ -5,9 +5,10 @@
   "keywords" : ["conceptart", "images", "stories", "fiction"],
   "author" : "Arvid Kahl <mail@arvidkahl.de>",
   "contributors" : [],
-  "version" : "0.1.0",
+  "version" : "0.1.1",
   "directories" : { "public": "./public" },
   "engines" : { "node": ">=0.2.0" },
+  "node" : "0.6.12",
   "dependencies":{
      "coffee-script":"*",
      "express":"*",
