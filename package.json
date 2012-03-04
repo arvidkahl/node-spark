@@ -1,4 +1,5 @@
 {
+  "node" : "0.6.12",
   "name" : "spark",
   "description" : "picturing ideas",
   "url" : "http://spark.nodester.com",
@@ -7,8 +8,6 @@
   "contributors" : [],
   "version" : "0.1.1",
   "directories" : { "public": "./public" },
-  "engines" : { "node": ">=0.6.0" },
-  "node" : "0.6.12",
   "dependencies":{
      "coffee-script":"*",
      "express":"*",
