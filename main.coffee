@@ -6,7 +6,7 @@ coffee = require 'coffee-script'
 less = require 'less'
 fs = require 'fs'
 md = require('node-markdown').Markdown
-auth = require './auth'
+auth = require './auth.coffee'
 config = require 'config'
 
 #session perstistence
