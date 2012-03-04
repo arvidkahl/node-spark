@@ -2,6 +2,7 @@
 exp = require 'express'
 app = exp.createServer()
 
+coffee = require 'coffee-script'
 less = require 'less'
 fs = require 'fs'
 md = require('node-markdown').Markdown
