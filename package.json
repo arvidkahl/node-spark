@@ -3,9 +3,9 @@
   "name" : "spark",
   "description" : "picturing ideas",
   "url" : "http://spark.nodester.com",
-  "keywords" : ["conceptart", "images", "stories", "fiction"],
+  "keywords" : "none",
   "author" : "Arvid Kahl <mail@arvidkahl.de>",
-  "contributors" : [],
+  "contributors" : "me",
   "version" : "0.1.1",
   "directories" : { "public": "./public" },
   "dependencies":{
