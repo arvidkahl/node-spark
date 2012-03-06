@@ -9,8 +9,8 @@ md = require('node-markdown').Markdown
 auth = require './auth.coffee'
 config = require './config.coffee'
 
-#session perstistence
-connectCouchDB = require('connect-couchdb')(exp)
+# Session perstistence implemented with CouchDB
+sessionDB = require('connect-couchdb')(exp)
 
 #auth.helpExpress app
 
@@ -22,39 +22,40 @@ app.configure () ->
 	app.use exp.methodOverride()
 	app.use exp.bodyParser()
 	app.use exp.cookieParser()
-	app.use exp.session {secret: 'nawollenwirdochmalsehn', store: new connectCouchDB({host: config.host,name: 'sessions',  reapInterval: 600000, compactInterval: 300000})}
+	app.use exp.session {secret: 'nawollenwirdochmalsehn', store: new sessionDB({host: config.host,name: config.sessionDBName,  reapInterval: 600000, compactInterval: 300000})}
 	app.use exp.compiler { src: __dirname + '/public', dest: __dirname + '/public', enable: ['less'] }
 	app.use exp.static __dirname + '/public'	
 	app.use auth.middleware()
+
+auth.helpExpress app
 
 # Articler Class
 Articler = require('./articler').Articler
 article = new Articler config.host, config.port
 
 app.get '/', (req, res) ->
-	if (req.session.auth)		
-		console.log "You are authed."
-		#console.log req.session.auth.twitter
-		user = req.session.auth.twitter.user
-	else 
-	    console.log "You are not authed."
+#	if (req.session.auth)		
+#		console.log "You are authed."
+#	else 
+#	    console.log "You are not authed."
 	article.findAll (err, docs) ->
-		console.log "GET /"
+#		console.log "GET /"
+#		console.log req.user
 		res.render 'index', {
 			locals: {
 				title: 'Sparks'
 				articles: docs
-				user: user
 			}
 		}
 	
 app.get '/new', (req, res) ->
-	console.log "GET /new"
-	res.render 'new', {locals: {title: 'Sparks / New Post'}}	
+#	console.log "GET /new"
+	console.log req.user
+	res.render 'new', {locals: {title: 'Sparks / New Post - '}}	
 
 app.post '/new', (req, res) ->
-	console.log "POST /new"
-	console.log req.param 'title'
+#	console.log "POST /new"
+#	console.log req.param 'title'
 	article.save {
         title: req.param 'title'
         body: req.param 'body'

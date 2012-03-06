@@ -1,5 +1,6 @@
 config = {}
 config.port = 5984
 config.host = 'arvidkahl.iriscouch.com'
-config.name = 'sessions'
+config.sessionDBName = 'sessions'
+
 module.exports = config

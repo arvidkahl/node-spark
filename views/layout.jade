@@ -3,4 +3,39 @@ html
   head
     include bootstrap
     title= title
-  body!= body
+  body
+    div.navbar.navbar-fixed-top
+      div.navbar-inner
+        div.container-fluid
+          a(href='#').brand #{title}
+          div.nav-collapse
+            ul.nav
+              li
+                a(href='#') Home
+              li
+                a(href='#') About
+              li
+                a(href='#') Contact
+            p.navbar-text.pull-right
+              - if (everyauth.loggedIn)
+                span= "Logged in as "+ everyauth.twitter.user.name +" "
+                a(href="/logout")= "Logout"
+              - else
+                a(href= "/auth/twitter")= "Login with Twitter"          
+    div.container
+      div.row!= body
+      
+      footer
+        p &copy; 
+          a(href= "http://www.arvidkahl.de")="Arvid Kahl"
+          | . Website is built with 
+          a(href= "http://nodejs.org")= "Node.js"
+          |, 
+          a(href= "http://www.http://expressjs.com")="Express"
+          |, 
+          a(href= "http://couchdb.apache.org/")="CouchDB"
+          |, 
+          a(href= "http://lesscss.org/")="LESS" 
+          |  and 
+          a(href= "http://coffeescript.org/")="Coffee-Script"
+          |.
