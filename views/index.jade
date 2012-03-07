@@ -2,9 +2,12 @@ div.span10
     - each article in articles
       .article.well
         h1= article.title
-        div.created= article.created_at
+        div.created #{(new Date(article.created_at)).toGMTString()}
         div.image
           img(src=article.url)
         div.body= article.body
+          a.btn.btn-large(href="test") View Stories 
+          a.btn.btn-large(href="moo") Add Story 
 div.span2
-  h3 Secondary content
+  .well
+    h3 Secondary content
