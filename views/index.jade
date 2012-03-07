@@ -1,8 +1,10 @@
 div.span10
     - each article in articles
-      .article
+      .article.well
         h1= article.title
-        span.created= article.created_at
-        span.body= article.body
+        div.created= article.created_at
+        div.image
+          img(src=article.url)
+        div.body= article.body
 div.span2
   h3 Secondary content

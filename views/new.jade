@@ -1,4 +1,9 @@
-form(method="post")
-	input(type="text", id="title", name="title", placeholder="Title") 
-	textarea(name="body",  id="body", rows="20")
-	input(type="submit", value="Publish")
+form.form-horizontal(method="post")
+  .control-group
+    input.input-medium(type="text", id="title", name="title", placeholder="Title of the image") 
+  .control-group
+    input.input-medium(type="text", id="url", name="url", placeholder="URL to image")
+  .control-group
+    textarea(name="body",  id="body", rows="20", placeholder="Please enter a short description here.")
+  .control-group
+    input.btn(type="submit", value="Add Image to Spark.")

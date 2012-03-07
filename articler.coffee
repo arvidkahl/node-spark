@@ -1,14 +1,15 @@
 # Articler Class - Handles all article functions
+config = require './config.coffee'
 cradle = require 'cradle'
  
 class Articler
-    constructor: (host, port) ->
+    constructor: (host, port, collection) ->
         @.connect = new cradle.Connection host, port, {
             cache: true
             raw: false
         }
-        @.db = @.connect.database 'sparks'
- 
+        @.db = @.connect.database collection
+
     findAll: (callback) ->
         @.db.view 'sparks/all', {descending: true}, (err, res) ->
             if (err)

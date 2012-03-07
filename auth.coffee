@@ -1,10 +1,12 @@
+config = require './config.coffee'
+
 everyauth = module.exports = require 'everyauth'
-everyauth.debug = false
+everyauth.debug = true
 everyauth.everymodule.moduleErrback (err) ->
-	console.log err
+	console.log "Auth ERROR - "+err
 everyauth.twitter
-    .consumerKey('umY6lNpuhh4B6I1BshJMLA')
-    .consumerSecret('I4qEqVHgZM0LEVY61sE9w1tFW5lTATCxOy7CwaO0NA')
+    .consumerKey(config.twitterConsumerKey)
+    .consumerSecret(config.twitterConsumerSecret)
     .findOrCreateUser((session, token, secret, user) ->
         promise = @.Promise().fulfill user
     ).redirectPath '/'

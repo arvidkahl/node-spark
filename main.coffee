@@ -1,3 +1,6 @@
+# Configuration Files
+config = require './config.coffee'
+
 # Requires and Variables
 exp = require 'express'
 app = exp.createServer()
@@ -7,12 +10,9 @@ less = require 'less'
 fs = require 'fs'
 md = require('node-markdown').Markdown
 auth = require './auth.coffee'
-config = require './config.coffee'
 
 # Session perstistence implemented with CouchDB
 sessionDB = require('connect-couchdb')(exp)
-
-#auth.helpExpress app
 
 # App Configuration
 app.configure () ->
@@ -22,7 +22,7 @@ app.configure () ->
 	app.use exp.methodOverride()
 	app.use exp.bodyParser()
 	app.use exp.cookieParser()
-	app.use exp.session {secret: 'nawollenwirdochmalsehn', store: new sessionDB({host: config.host,name: config.sessionDBName,  reapInterval: 600000, compactInterval: 300000})}
+	app.use exp.session {secret: 'nawollenwirdochmalsehn', store: new sessionDB({host: config.sessionDBHost,name: config.sessionDBName,  reapInterval: 600000, compactInterval: 300000})}
 	app.use exp.compiler { src: __dirname + '/public', dest: __dirname + '/public', enable: ['less'] }
 	app.use exp.static __dirname + '/public'	
 	app.use auth.middleware()
@@ -30,35 +30,27 @@ app.configure () ->
 auth.helpExpress app
 
 # Articler Class
-Articler = require('./articler').Articler
-article = new Articler config.host, config.port
+Articler = require('./articler.coffee').Articler
+article = new Articler config.mainDBHost, config.mainDBPort, config.mainDB
 
 app.get '/', (req, res) ->
-#	if (req.session.auth)		
-#		console.log "You are authed."
-#	else 
-#	    console.log "You are not authed."
 	article.findAll (err, docs) ->
-#		console.log "GET /"
-#		console.log req.user
 		res.render 'index', {
 			locals: {
-				title: 'Sparks'
+				title: 'Spark.'
 				articles: docs
 			}
 		}
 	
 app.get '/new', (req, res) ->
-#	console.log "GET /new"
 	console.log req.user
-	res.render 'new', {locals: {title: 'Sparks / New Post - '}}	
+	res.render 'new', {locals:{title:'Spark.'}}	
 
 app.post '/new', (req, res) ->
-#	console.log "POST /new"
-#	console.log req.param 'title'
 	article.save {
         title: req.param 'title'
         body: req.param 'body'
+        url: req.param 'url'
         created_at: new Date()
     }, (err, docs) ->
         res.redirect('/')

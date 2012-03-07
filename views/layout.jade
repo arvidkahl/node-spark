@@ -11,11 +11,21 @@ html
           div.nav-collapse
             ul.nav
               li
-                a(href='#') Home
+                a(href='/') 
+                  i.icon-home.icon-white
+                  | Home
               li
-                a(href='#') About
+                a(href='/all')
+                  i.icon-book.icon-white
+                  | Browse Images
               li
-                a(href='#') Contact
+                a(href='/new') 
+                  i.icon-plus-sign.icon-white
+                  | Add Image
+              li
+                a(href='#') 
+                  i.icon-envelope.icon-white
+                  | Contact
             p.navbar-text.pull-right
               - if (everyauth.loggedIn)
                 span= "Logged in as "+ everyauth.twitter.user.name +" "
