@@ -3689,3 +3689,6 @@ h1 {
 .navbar .nav li a i {
   margin-right: 3px;
 }
+a.btn {
+  margin-right: 5px;
+}
