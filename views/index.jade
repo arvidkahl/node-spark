@@ -1,14 +1,12 @@
-div.span10
-  a.btn.btn-large.btn-primary(href="test") View Stories 
-  a.btn.btn-large(href="moo") Add Story
+div.span12
   - each article in articles
     .article.well
       h1= article.title
       div.created #{(new Date(article.created_at)).toGMTString()}
-      div.image
-        img(src=article.url) 
-      a.btn.btn-large.btn-primary(href="test") View Stories 
-      a.btn.btn-large(href="moo") Add Story 
-div.span2
-  .well
-    h3 Secondary content
+      a(href='/'+article._id)
+          div.image
+          img(src=article.url, alt=article.body) 
+      div
+        a.btn(href="test") View Stories 
+        | 
+        a.btn.btn-primary(href= article._id ) Add Story 

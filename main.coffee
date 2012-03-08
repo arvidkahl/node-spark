@@ -43,7 +43,6 @@ app.get '/', (req, res) ->
 		}
 	
 app.get '/new', (req, res) ->
-	console.log req.user
 	res.render 'new', {locals:{title:'Spark.'}}	
 
 app.post '/new', (req, res) ->
@@ -60,6 +59,18 @@ app.get '/concept', (req, res) ->
 		throw err if err
 		res.end md data
 		
+app.get '/:id', (req, res) ->
+	article.findById req.params.id, (err, doc) ->
+		if doc 
+			res.render 'single', {
+				locals:{
+					title:"Spark.",
+					doc: doc.value
+				}
+			}
+		else
+			res.redirect('/')
+			
 # Run App
 app.listen 14904
 console.log 'Server running at http://localhost:14904/'

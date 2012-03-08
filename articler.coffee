@@ -19,7 +19,16 @@ class Articler
                 res.forEach (row) ->
                     docs.push row
                 callback null, docs
- 
+
+
+    findById: (mykey, callback) ->
+	    @.db.view 'sparks/byid', {key: mykey}, (err, res) ->
+		    if (err)
+		        callback err
+		    else 
+		       callback null, res[0]
+	
+		  
     save: (articles, callback) ->
         @.db.save articles, (err, res) ->
             if (err)
