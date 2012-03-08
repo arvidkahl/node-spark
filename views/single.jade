@@ -1,0 +1,11 @@
+div.span12
+    .well
+      h1= doc.title
+      div.created #{(new Date(doc.created_at)).toGMTString()}
+      div.image
+        img(src=doc.url) 
+      - var editLink = "/"+doc._id+'/edit' 
+      div
+        a.btn.btn-warning(href= editLink) Edit Image 
+        | 
+        a.btn.btn-danger(href=("/"+doc._id+'/delete')) Delete Image 
