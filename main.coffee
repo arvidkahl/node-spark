@@ -35,7 +35,6 @@ article = new Articler config.mainDBHost, config.mainDBPort, config.mainDB
 
 app.get '/', (req, res) ->
 	article.findAll (err, docs) ->
-		console.log req.session.auth.userId
 		res.render 'index', {
 			locals: {
 				title: 'Spark.'
@@ -44,7 +43,11 @@ app.get '/', (req, res) ->
 		}
 	
 app.get '/new', (req, res) ->
-	res.render 'new', {locals:{title:'Spark.'}}	
+	res.render 'new', {
+		locals: {
+			title: 'Spark.'
+				}
+			}	
 
 app.post '/new', (req, res) ->
 	if (req.session.auth.loggedIn)
