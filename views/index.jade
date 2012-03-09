@@ -1,7 +1,9 @@
 div.span12
-  .well 
-    h1 Hi! Spark wants to ignite your imagination. 
-    p Let fantastic concept art inspire you. Share your stories with other imagineers. Add new images to the library.
+  .hero-unit
+    h1 Ignite your imagination. 
+    p Let fantastic concept art inspire you. Share your stories with other imagineers. 
+    p
+      a.btn.btn-primary(href="/random") You don't say! Show me how it works!
   - each article in articles
     .article.well
       h3= article.title

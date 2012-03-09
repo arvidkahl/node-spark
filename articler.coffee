@@ -35,5 +35,12 @@ class Articler
                 callback err
             else
                 callback null, articles, res
+
+    saveById: (id, articles, callback) ->
+        @.db.save id, articles, (err, res) ->
+            if (err)
+                callback err
+            else
+                callback null, articles, res
  
 exports.Articler = Articler

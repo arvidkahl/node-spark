@@ -10,6 +10,8 @@ less = require 'less'
 fs = require 'fs'
 md = require('node-markdown').Markdown
 auth = require './auth.coffee'
+crypto = require 'crypto'
+
 
 # Session perstistence implemented with CouchDB
 sessionDB = require('connect-couchdb')(exp)
@@ -31,10 +33,10 @@ auth.helpExpress app
 
 # Articler Class
 Articler = require('./articler.coffee').Articler
-article = new Articler config.mainDBHost, config.mainDBPort, config.mainDB
+scene = new Articler config.mainDBHost, config.mainDBPort, config.mainDB
 
 app.get '/', (req, res) ->
-	article.findAll (err, docs) ->
+	scene.findAll (err, docs) ->
 		res.render 'index', {
 			locals: {
 				title: 'Spark.'
@@ -52,12 +54,13 @@ app.get '/new', (req, res) ->
 app.post '/new', (req, res) ->
 	if (req.session.auth.loggedIn)
 		uid = req.session.auth.userId
-		article.save {
+		scene.save {
 			createUserId: uid
 			title: req.param 'title'
 			body: req.param 'body'
 			url: req.param 'url'
 			created_at: new Date()
+			stories: []
 		}, (err, returnedDoc, returnedData) ->
 			res.redirect('/'+returnedData.id)
 	else res.redirect('/')
@@ -68,17 +71,43 @@ app.get '/concept', (req, res) ->
 		res.end md data
 		
 app.get '/:id', (req, res) ->
-	article.findById req.params.id, (err, doc) ->
+	scene.findById req.params.id, (err, doc) ->
 		if doc 
 			res.render 'single', {
 				locals:{
-					title:"Spark.",
+					title:"Spark."
+					id: req.params.id
 					doc: doc.value
 				}
 			}
 		else
 			res.redirect('/')
+
+app.post '/:id/add', (req, res) ->
+	scene.findById req.params.id, (findErr, originalDoc) ->
+
+		if originalDoc
+			tempDoc = originalDoc.value
+			uid = req.session.auth.userId
+			newStory =  {
+				title: req.param "title"
+				story: req.param "story"
+				createUserId: uid
+			}
 			
+			hash = crypto.createHmac('sha1', 'abcdeg').update(newStory.title+newStory.story+newStory.createUserId).digest('hex')
+			
+			newStory._id=hash
+			
+			tempDoc.stories.push newStory
+			
+			scene.saveById req.params.id, tempDoc, (saveErr, doc, saveRes) ->
+				throw saveErr if saveErr
+				res.redirect('/'+req.params.id)
+		else
+			console.log "could not retrieve original document"
+			res.redirect('/'+req.params.id)
+
 # Run App
 app.listen 14904
 console.log 'Server running at http://localhost:14904/'
