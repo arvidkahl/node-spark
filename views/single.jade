@@ -4,8 +4,9 @@ div.span12
       div.created #{(new Date(doc.created_at)).toGMTString()}
       div.image
         img(src=doc.url) 
-      - var editLink = "/"+doc._id+'/edit' 
-      div
-        a.btn.btn-warning(href= editLink) Edit Image 
-        | 
-        a.btn.btn-danger(href=("/"+doc._id+'/delete')) Delete Image 
+      - if (everyauth.userId == doc.createUserId)
+        - var editLink = "/"+doc._id+'/edit' 
+        div
+          a.btn.btn-mini.btn-warning(href= editLink) Edit Image 
+          | 
+          a.btn.btn-mini.btn-danger(href=("/"+doc._id+'/delete')) Delete Image 

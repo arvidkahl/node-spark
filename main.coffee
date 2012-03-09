@@ -22,7 +22,7 @@ app.configure () ->
 	app.use exp.methodOverride()
 	app.use exp.bodyParser()
 	app.use exp.cookieParser()
-	app.use exp.session {secret: 'nawollenwirdochmalsehn', store: new sessionDB({host: config.sessionDBHost,name: config.sessionDBName,  reapInterval: 600000, compactInterval: 300000})}
+	app.use exp.session {secret: 'nawollenwirdochmalsehn', store: new sessionDB({host: config.sessionDBHost,name: config.sessionDBName, auth: {username: config.sessionDBUser, password: config.sessionDBPass}, reapInterval: 600000, compactInterval: 300000})}
 	app.use exp.compiler { src: __dirname + '/public', dest: __dirname + '/public', enable: ['less'] }
 	app.use exp.static __dirname + '/public'	
 	app.use auth.middleware()
@@ -35,6 +35,7 @@ article = new Articler config.mainDBHost, config.mainDBPort, config.mainDB
 
 app.get '/', (req, res) ->
 	article.findAll (err, docs) ->
+		console.log req.session.auth.userId
 		res.render 'index', {
 			locals: {
 				title: 'Spark.'
@@ -46,13 +47,17 @@ app.get '/new', (req, res) ->
 	res.render 'new', {locals:{title:'Spark.'}}	
 
 app.post '/new', (req, res) ->
-	article.save {
-        title: req.param 'title'
-        body: req.param 'body'
-        url: req.param 'url'
-        created_at: new Date()
-    }, (err, docs) ->
-        res.redirect('/')
+	if (req.session.auth.loggedIn)
+		uid = req.session.auth.userId
+		article.save {
+			createUserId: uid
+			title: req.param 'title'
+			body: req.param 'body'
+			url: req.param 'url'
+			created_at: new Date()
+		}, (err, returnedDoc, returnedData) ->
+			res.redirect('/'+returnedData.id)
+	else res.redirect('/')
 
 app.get '/concept', (req, res) ->
 	fs.readFile 'CONCEPT.md', 'ascii', (err, data) ->

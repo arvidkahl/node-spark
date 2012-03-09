@@ -34,6 +34,6 @@ class Articler
             if (err)
                 callback err
             else
-                callback null, articles
+                callback null, articles, res
  
 exports.Articler = Articler

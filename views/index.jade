@@ -1,7 +1,10 @@
 div.span12
+  .well 
+    h1 Hi! Spark wants to ignite your imagination. 
+    p Let fantastic concept art inspire you. Share your stories with other imagineers. Add new images to the library.
   - each article in articles
     .article.well
-      h1= article.title
+      h3= article.title
       div.created #{(new Date(article.created_at)).toGMTString()}
       a(href='/'+article._id)
           div.image
