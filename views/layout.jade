@@ -7,30 +7,36 @@ html
     div.navbar.navbar-fixed-top
       div.navbar-inner
         div.container-fluid
-          a(href='/').brand Spark.
+          a(href='/').brand 
+            i.icon-fire.icon-white
+            | Spark.
           div.nav-collapse
             ul.nav
+              li.divider-vertical
               li
-                a(href='/#')
+                a(href='/scenes')
                   i.icon-book.icon-white
                   | Browse Scenes
               li
                 a(href='/new') 
                   i.icon-file.icon-white
                   | Add Scene
+              li.divider-vertical
               li
                 a(href='#') 
                   i.icon-envelope.icon-white
                   | Contact
+              li
+                a(href='/howto')
+                  i.icon-info-sign.icon-white
+                  | HowTo
             p.navbar-text.pull-right
               - if (everyauth.loggedIn)
                 span= "Logged in as "+ everyauth.twitter.user.name +" "
                 a(href="/logout")= "Logout"
               - else
                 a(href= "/auth/twitter")= "Login with Twitter"          
-    div.container
-      div.row!= body
-      
+    div.container!= body      
       footer
         p &copy; 
           a(href= "http://www.arvidkahl.de")="Arvid Kahl"
@@ -44,4 +50,6 @@ html
           a(href= "http://lesscss.org/")="LESS" 
           |  and 
           a(href= "http://coffeescript.org/")="Coffee-Script"
-          |.
+          |. It is hosted on 
+          a(href="http://www.nodester.com/") Nodester
+          |, which is just plain awesome.

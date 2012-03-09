@@ -43,7 +43,15 @@ app.get '/', (req, res) ->
 				articles: docs
 			}
 		}
-	
+
+app.get '/scenes', (req, res) ->
+	scene.findAll (err, docs) ->
+		res.render 'scenes', {
+			locals: {
+				title: 'Spark.'
+				articles: docs
+			}
+		}	
 app.get '/new', (req, res) ->
 	res.render 'new', {
 		locals: {
@@ -108,6 +116,26 @@ app.post '/:id/add', (req, res) ->
 			console.log "could not retrieve original document"
 			res.redirect('/'+req.params.id)
 
+app.post '/:id/save/:commentId', (req, res) ->
+	
+	scene.findById req.params.id, (err, doc) ->
+		newStoryUserId = 'not authed'
+		newStories = []
+		stories = doc.value.stories
+		stories.forEach (story) ->
+			if (story._id == req.params.commentId)
+				story.title = req.param 'title'
+				story.story = req.param 'story'
+				newStoryUserId = story.createUserId
+			newStories.push story
+		doc.value.stories = newStories
+		if (newStoryUserId == req.session.auth.userId)
+			scene.saveById req.params.id, doc.value, (saveErr, saveDoc, saveRes) ->
+				throw saveErr if saveErr
+				res.redirect '/'+req.params.id
+		else 
+			res.redirect '/'+req.params.id
+		
 # Run App
 app.listen 14904
 console.log 'Server running at http://localhost:14904/'

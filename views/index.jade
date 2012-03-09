@@ -1,17 +1,18 @@
-div.span12
-  .hero-unit
-    h1 Ignite your imagination. 
-    p Let fantastic concept art inspire you. Share your stories with other imagineers. 
-    p
-      a.btn.btn-primary(href="/random") You don't say! Show me how it works!
-  - each article in articles
-    .article.well
-      h3= article.title
-      div.created #{(new Date(article.created_at)).toGMTString()}
-      a(href='/'+article._id)
-          div.image
-          img(src=article.url, alt=article.body) 
-      div
-        a.btn(href="test") View Stories 
+.row
+  div.span12
+    .hero-unit
+      h1 Ignite your imagination. 
+      p Let fantastic concept art inspire you. Share your stories with other imagineers. 
+      p
+        a.btn.btn-primary(href="/howto") Show me how it works! »
         | 
-        a.btn.btn-primary(href= article._id ) Add Story 
+        a.btn(href="/random") Take me to a scene already! »
+  div.span4
+    .well 
+      h2 Check!
+  div.span4
+    .well
+      h2 These!
+  div.span4
+    .well
+      h2 Out!

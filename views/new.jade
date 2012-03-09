@@ -1,24 +1,25 @@
-- if (everyauth.loggedIn)
-	div.span4
-		div.well
-			form.form-horizontal(method="post")
-				.control-group
-					h1 Oh, a new Image!
-				
-				.control-group
-					input.input-large(type="text", id="title", name="title", placeholder="Title of the image") 
-				.control-group
-					input.input-large(type="text", id="url", name="url", placeholder="URL to image")
-				.control-group
-					textarea.input-large(name="body",  id="body", rows="2", placeholder="Please enter a short description here.")
-				.control-group
-					input.btn.btn-primary(type="submit", value="Add Image to Spark.") 
-					| 
-					input.btn(type="reset", value="Reset")
-	.span8
-		.well
-			img
-- else 
-	div.span12
-		div.well
-			p You are not logged in. Adding Images is only allowed for logged-in Users. 
+div.row
+  - if (everyauth.loggedIn)
+    div.span4
+        div.well
+            form.form-horizontal(method="post")
+                .control-group
+                    h1 Oh, a new Image!
+                
+                .control-group
+                    input.input-large(type="text", id="title", name="title", placeholder="Title of the image") 
+                .control-group
+                    input.input-large(type="text", id="url", name="url", placeholder="URL to image")
+                .control-group
+                    textarea.input-large(name="body",  id="body", rows="2", placeholder="Please enter a short description here.")
+                .control-group
+                    input.btn.btn-primary(type="submit", value="Add Image to Spark.") 
+                    | 
+                    input.btn(type="reset", value="Reset")
+    .span8
+        .well
+            img
+  - else 
+    div.span12
+        div.well
+            p You are not logged in. Adding Images is only allowed for logged-in Users. 
