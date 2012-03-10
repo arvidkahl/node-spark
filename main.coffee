@@ -77,6 +77,14 @@ app.get '/concept', (req, res) ->
 	fs.readFile 'CONCEPT.md', 'ascii', (err, data) ->
 		throw err if err
 		res.end md data
+
+app.get '/random', (req, res) ->
+	scene.findAllIds (err, ids) ->
+		if err
+			throw err
+			res.redirect '/'
+		else
+			res.redirect '/'+ids[Math.floor(Math.random() * ids.length)].id
 		
 app.get '/:id', (req, res) ->
 	scene.findById req.params.id, (err, doc) ->

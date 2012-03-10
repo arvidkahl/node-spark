@@ -20,6 +20,15 @@ class Articler
                     docs.push row
                 callback null, docs
 
+    findAllIds: (callback) ->
+        @.db.view 'sparks/allbyid', {descending: true}, (err, res) ->
+            if (err)
+                callback err
+            else
+                ids = []
+                res.forEach (row) ->
+                    ids.push row
+                callback null, ids
 
     findById: (mykey, callback) ->
 	    @.db.view 'sparks/byid', {key: mykey}, (err, res) ->

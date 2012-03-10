@@ -3687,5 +3687,6 @@ h1 {
   color: #0088cc;
 }
 .navbar .nav li a i {
+  font-size: 100%;
   margin-right: 3px;
 }
