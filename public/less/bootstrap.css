@@ -3704,3 +3704,22 @@ h1 {
   vertical-align: middle;
   margin-top: -2px;
 }
+.editScene {
+  margin-bottom: 3px;
+}
+#scenes {
+  position: relative;
+  list-style: none;
+}
+#scenes li {
+  display: none;
+  width: 260px;
+}
+#scenes li img {
+  display: block;
+  margin-bottom: 0px;
+}
+#scenes li div.well {
+  margin-bottom: 0;
+  padding: 5px;
+}

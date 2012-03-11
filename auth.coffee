@@ -1,7 +1,7 @@
 config = require './config.coffee'
 
 everyauth = module.exports = require 'everyauth'
-everyauth.debug = true
+everyauth.debug = false
 everyauth.everymodule.moduleErrback (err) ->
 	console.log "Auth ERROR - "+err
 	

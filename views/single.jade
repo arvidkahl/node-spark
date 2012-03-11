@@ -29,8 +29,8 @@ div.row
       p 
         i.icon-cog 
         | 
-        strong Feedback
-        span.pull-right Report Problem
+        strong Description
+        p= doc.body
 
 - if (typeof(notice) != 'undefined')  
   p=notice
@@ -48,11 +48,10 @@ div.row
             $(function(){$('#scene').lightBox({overlayOpacity:0.9});});
         - if (everyauth.userId == doc.createUserId)
           - var editLink = "/"+doc._id+'/edit' 
+          a.editScene.btn.btn-mini.btn-warning(href=("/"+doc._id+'/edit')) Edit Scene
           form(method="post", action="/"+doc._id+'/delete')
-            div.btn-group
-              button.btn.btn-mini.btn-warning(href= editLink) Edit Image 
-              | 
-              button.btn.btn-mini.btn-danger(href=("/"+doc._id+'/delete')) Delete Image
+            button.btn.btn-mini.btn-danger(href=("/"+doc._id+'/delete')) Delete Scene
+              
   div.span6
     - each story in doc.stories
       div.well

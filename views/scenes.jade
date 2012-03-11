@@ -1,11 +1,21 @@
-div.row
-  div.span12
-    - each article in articles
-      .article.well
-        h1= article.title
-        div.created #{(new Date(article.created_at)).toGMTString()}
-        a(href='/'+article._id)
+div.row#sceneRow
+  div.span12  
+    ul#scenes
+      - each article in articles
+        li
+         .well
+          a(href='/'+article._id)
             div.image
-            img(id=article._id,src=article.url, alt=article.body) 
-        div
-          a.btn.btn-primary(href= article._id ) Show me the Stories »
+              img(id=article._id,src=article.url, alt=article.body) 
+            div
+              h6= article.title 
+                small.pull-right= "by "+article.createUserName
+              a.btn(href= article._id ) Show me the Stories »
+          
+script
+ $('#scenes li').wookmark({container:$('#scenes'),offset:5,itemWidth:260,autoResize:true});
+ 
+ 
+// h1= article.title + "("+i+")"
+// div.created #{(new Date(article.created_at)).toGMTString()}
+ 

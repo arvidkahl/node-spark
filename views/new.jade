@@ -4,26 +4,29 @@ div.row
         div.well
             form.form-horizontal(method="post")
                 .control-group
-                    h1 Oh, a new Image!
+                    h1 Oh, a new Scene!
                 
                 .control-group
-                    input.input-large(type="text", id="title", name="title", placeholder="Title of the image") 
+                    input.input-large(type="text", id="title", name="title", placeholder="Title of the Scene") 
                 .control-group
-                    input.input-large(type="text", id="url", name="url", placeholder="URL to image")
+                    input.input-large(type="text", id="url", name="url", placeholder="URL to Scene")
                 .control-group
-                    input.input-large(type="text", id="found", name="found", placeholder="Please link the Thread/Site where this image came from")
+                    input.input-large(type="text", id="found", name="found", placeholder="Please link the Thread/Site where this Scene came from")
                 .control-group
-                    input.input-large(type="text", id="creator", name="creator", placeholder="Who created this image? Who is the &copy; owner?")
+                    input.input-large(type="text", id="creator", name="creator", placeholder="Who created this Scene? Who is the &copy; owner?")
                 .control-group
-                    textarea.input-large(name="body",  id="body", rows="2", placeholder="Please enter a short description here.")
+                    textarea.input-large(name="body",  id="body", rows="2", placeholder="Please enter a short description here. Ask a question about the implications of the Scene. ")
                 .control-group
-                    input.btn.btn-primary(type="submit", value="Add Image to Spark.") 
+                    input.btn.btn-primary(type="submit", value="Add Scene to Spark.") 
                     | 
                     input.btn(type="reset", value="Reset")
+                    script
+                      $('#url').change(function(){
+                       $('#preview').attr("src", $("#url").attr("value"))});
     .span8
         .well
-            img
+            img#preview
   - else 
     div.span12
         div.well
-            p You are not logged in. Adding Images is only allowed for logged-in Users. 
+            p You are not logged in. Adding Scenes is only allowed for logged-in Users. 

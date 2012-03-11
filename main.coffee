@@ -108,7 +108,6 @@ app.get '/:id', (req, res) ->
 app.get '/:id/edit', (req, res) ->
 	scene.findById req.params.id, (err, doc) ->
 		if doc
-			console.log doc.value
 			res.render 'edit', {
 				locals:{
 					title:"Spark."
