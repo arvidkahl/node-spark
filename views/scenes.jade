@@ -1,16 +1,16 @@
 div.row#sceneRow
   div.span12  
     ul#scenes
-      - each article in articles
+      - each doc in docs
         li
          .well
-          a(href='/'+article._id)
+          a(href='/'+doc._id)
             div.image
-              img(id=article._id,src=article.url, alt=article.body) 
+              img(id=doc._id,src=doc.url, alt=doc.body) 
             div
-              h6= article.title 
-                small.pull-right= "by "+article.createUserName
-              a.btn(href= article._id ) Show me the Stories »
+              h6= doc.title 
+                small.pull-right= "by "+doc.createUserName
+              a.btn(href= doc._id ) Show me the Stories »
           
 script
  $('#scenes li').wookmark({container:$('#scenes'),offset:5,itemWidth:260,autoResize:true});

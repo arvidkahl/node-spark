@@ -1,18 +1,43 @@
 .row
   div.span12
-    .hero-unit
+    .hero-unit#indexHeroUnit
       h1 Ignite your imagination. 
       p Let fantastic concept art inspire you. Share your stories with other imagineers. 
       p
         a.btn.btn-primary(href="/howto") Show me how it works! »
         | 
         a.btn(href="/random") Take me to a scene already! »
+.row#indexRandomScenes
   div.span4
     .well 
       h2 Check!
+      a(href='/'+docs[0]._id)
+        div.image
+          img(id=docs[0]._id,src=docs[0].url, alt=docs[0].body) 
+        div
+          h6= docs[0].title 
+            small.pull-right= "by "+docs[0].createUserName
+          a.btn(href='/'+docs[0]._id ) Show me the Stories »
+      
   div.span4
     .well
       h2 These!
+      a(href='/'+docs[1]._id)
+        div.image
+          img(id=docs[1]._id,src=docs[1].url, alt=docs[1].body) 
+        div
+          h6= docs[1].title 
+            small.pull-right= "by "+docs[1].createUserName
+          a.btn(href='/'+docs[1]._id ) Show me the Stories »
+
   div.span4
     .well
       h2 Out!
+      a(href='/'+docs[2]._id)
+        div.image
+          img(id=docs[2]._id,src=docs[2].url, alt=docs[2].body) 
+        div
+          h6= docs[2].title 
+            small.pull-right= "by "+docs[2].createUserName
+          a.btn(href='/'+docs[2]._id ) Show me the Stories »
+      

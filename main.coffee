@@ -39,10 +39,17 @@ scene = new Articler config.mainDBHost, config.mainDBPort, config.mainDB
 
 app.get '/', (req, res) ->
 	scene.findAll (err, docs) ->
+		threeDocs = []
+		for tempDoc in [1..3]
+			position= Math.floor(Math.random() * docs.length)
+			threeDocs.push docs[position]
+			docs.splice position, 1
+		
+		console.log threeDocs
 		res.render 'index', {
 			locals: {
 				title: 'Spark.'
-				articles: docs
+				docs: threeDocs
 			}
 		}
 
@@ -51,9 +58,10 @@ app.get '/scenes', (req, res) ->
 		res.render 'scenes', {
 			locals: {
 				title: 'Spark.'
-				articles: docs
+				docs: docs
 			}
 		}	
+		
 app.get '/new', (req, res) ->
 	res.render 'new', {
 		locals: {
