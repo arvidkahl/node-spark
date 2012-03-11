@@ -3686,7 +3686,10 @@ body {
 h1 {
   color: #0088cc;
 }
-.navbar .nav li a i {
-  font-size: 100%;
-  margin-right: 3px;
+.sceneTitle {
+  margin-top: -5px;
+  margin-bottom: 10px;
+}
+.info p i {
+  color: #0088cc;
 }

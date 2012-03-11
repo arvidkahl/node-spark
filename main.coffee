@@ -12,6 +12,8 @@ md = require('node-markdown').Markdown
 auth = require './auth.coffee'
 crypto = require 'crypto'
 
+process.on 'uncaughtException', (err) ->
+	console.log err.stack
 
 # Session perstistence implemented with CouchDB
 sessionDB = require('connect-couchdb')(exp)
@@ -61,12 +63,16 @@ app.get '/new', (req, res) ->
 
 app.post '/new', (req, res) ->
 	if (req.session.auth.loggedIn)
+		console.log req.session.auth
 		uid = req.session.auth.userId
 		scene.save {
 			createUserId: uid
+			createUserName: req.session.auth.twitter.user.name
 			title: req.param 'title'
 			body: req.param 'body'
 			url: req.param 'url'
+			found: req.param "found"
+			creator: req.param "creator"
 			created_at: new Date()
 			stories: []
 		}, (err, returnedDoc, returnedData) ->
@@ -99,15 +105,27 @@ app.get '/:id', (req, res) ->
 		else
 			res.redirect('/')
 
+app.post '/:id/delete', (req, res) ->
+	storyId=req.params.id
+	scene.findById storyId, (err, doc) ->
+		if (req.session.auth.loggedIn)
+			uid = req.session.auth.userId
+			if (doc.value.createUserId == uid)
+				scene.deleteById storyId, doc.value._rev, (deleteErr, deleteRes) ->
+					throw deleteErr if deleteErr
+		res.redirect '/'
+		
 app.post '/:id/add', (req, res) ->
 	scene.findById req.params.id, (findErr, originalDoc) ->
 
 		if originalDoc
 			tempDoc = originalDoc.value
 			uid = req.session.auth.userId
+			
 			newStory =  {
 				title: req.param "title"
 				story: req.param "story"
+				createUserName: req.session.auth.twitter.user.name
 				createUserId: uid
 			}
 			
@@ -124,8 +142,28 @@ app.post '/:id/add', (req, res) ->
 			console.log "could not retrieve original document"
 			res.redirect('/'+req.params.id)
 
-app.post '/:id/save/:commentId', (req, res) ->
+app.post '/:id/delete/:commentId', (req, res) ->
+	console.log "finding..."
+	scene.findById req.params.id, (err, doc) ->
+		newStoryUserId = 'not authed'
+		newStories = []
+		stories = doc.value.stories
+		stories.forEach (story) ->
+			if (story._id != req.params.commentId)
+				newStories.push story
+			else
+				newStoryUserId = story.createUserId
+		doc.value.stories = newStories
+		if (newStoryUserId == req.session.auth.userId)
+			scene.saveById req.params.id, doc.value, (saveErr, saveDoc, saveRes) ->
+				throw saveErr if saveErr
+				res.notice = 'Saved.'
+				res.redirect '/'+req.params.id
+		else 
+			res.redirect '/'+req.params.id
 	
+
+app.post '/:id/save/:commentId', (req, res) ->
 	scene.findById req.params.id, (err, doc) ->
 		newStoryUserId = 'not authed'
 		newStories = []

@@ -51,5 +51,12 @@ class Articler
                 callback err
             else
                 callback null, articles, res
- 
+
+    deleteById: (id, revision, callback) ->
+        @.db.remove id, revision, (err, res) ->
+            if (err)
+                callback err
+            else
+                callback null, res
+
 exports.Articler = Articler

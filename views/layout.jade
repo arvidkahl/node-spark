@@ -9,27 +9,37 @@ html
         div.container-fluid
           a(href='/').brand 
             i.icon-fire.icon-white
-            | Spark.
+            | 
+            span Spark.
           div.nav-collapse
             ul.nav
               li.divider-vertical
               li
                 a(href='/scenes')
-                  i.icon-book.icon-white
-                  | Browse Scenes
+                  i.icon-book.icon-white 
+                  | 
+                  span Browse Scenes
               li
                 a(href='/new') 
-                  i.icon-file.icon-white
-                  | Add Scene
+                  i.icon-file.icon-white 
+                  | 
+                  span Add Scene
+              li
+                a.highlight(href='/random')
+                  i.icon-random.icon-white
+                  |  
+                  span Inspire me! 
               li.divider-vertical
               li
                 a(href='#') 
-                  i.icon-envelope.icon-white
-                  | Contact
+                  i.icon-envelope.icon-white 
+                  | 
+                  span Contact
               li
                 a(href='/howto')
-                  i.icon-info-sign.icon-white
-                  | HowTo
+                  i.icon-info-sign.icon-white 
+                  | 
+                  span HowTo
             p.navbar-text.pull-right
               - if (everyauth.loggedIn)
                 span= "Logged in as "+ everyauth.twitter.user.name +" "
@@ -49,8 +59,8 @@ html
           |, 
           a(href= "http://lesscss.org/")="LESS" 
           |, 
-          a(href= "http://coffeescript.org/")="Coffee-Script"
-          | and 
+          a(href= "http://coffeescript.org/")="Coffee-Script" 
+          |  and 
           a(href= "http://twitter.github.com/bootstrap/")="Twitter Bootstrap"
           |.
           br
