@@ -13,7 +13,9 @@ html
             span Spark.
           div.nav-collapse
             ul.nav
-              li.divider-vertical
+              li.active
+                a.highlight(href='/random')
+                  span Inspire me! 
               li
                 a(href='/scenes')
                   i.icon-book.icon-white 
@@ -24,11 +26,6 @@ html
                   i.icon-file.icon-white 
                   | 
                   span Add Scene
-              li
-                a.highlight(href='/random')
-                  i.icon-random.icon-white
-                  |  
-                  span Inspire me! 
               li.divider-vertical
               li
                 a(href='#') 
@@ -42,7 +39,9 @@ html
                   span HowTo
             p.navbar-text.pull-right
               - if (everyauth.loggedIn)
-                span= "Logged in as "+ everyauth.twitter.user.name +" "
+                span= "Logged in as "
+                img.twitterImage(src=everyauth.twitter.user.profile_image_url)
+                span= " "+ everyauth.twitter.user.name +" - "
                 a(href="/logout")= "Logout"
               - else
                 a(href= "/auth/twitter")= "Login with Twitter"          

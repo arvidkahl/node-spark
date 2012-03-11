@@ -38,19 +38,19 @@ div.row
 div.row
   div.span6
       .well
-        h1.sceneTitle= doc.title
+        h1.sceneTitle= doc.title+" "
+          small added by #{doc.createUserName}
         div.created.hide #{(new Date(doc.created_at)).toGMTString()}
         div.image
           a#scene(href=doc.url)
             img(src=doc.url) 
           script
             $(function(){$('#scene').lightBox({overlayOpacity:0.9});});
-        h6.sceneUserName added by #{doc.createUserName}
         - if (everyauth.userId == doc.createUserId)
           - var editLink = "/"+doc._id+'/edit' 
           form(method="post", action="/"+doc._id+'/delete')
             div.btn-group
-              button.btn.btn-mini.btn-warning.disabled(href= editLink) Edit Image 
+              button.btn.btn-mini.btn-warning(href= editLink) Edit Image 
               | 
               button.btn.btn-mini.btn-danger(href=("/"+doc._id+'/delete')) Delete Image
   div.span6

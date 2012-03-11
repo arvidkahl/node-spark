@@ -105,6 +105,40 @@ app.get '/:id', (req, res) ->
 		else
 			res.redirect('/')
 
+app.get '/:id/edit', (req, res) ->
+	scene.findById req.params.id, (err, doc) ->
+		if doc
+			console.log doc.value
+			res.render 'edit', {
+				locals:{
+					title:"Spark."
+					id: req.params.id
+					doc: doc.value
+				}
+			}
+		else
+			res.redirect '/'
+			
+app.post '/:id/edit', (req, res) ->
+	if (req.session.auth.loggedIn)
+		scene.findById req.params.id, (err, doc) ->
+			newStoryUserId = doc.value.createUserId
+			if (newStoryUserId == req.session.auth.userId)
+				newDoc = doc.value
+				newDoc.title = req.param 'title'
+				newDoc.url = req.param 'url'
+				newDoc.body = req.param 'body'
+				newDoc.found = req.param 'found'
+				newDoc.creator = req.param 'creator'
+				scene.saveById req.params.id, newDoc, (saveErr, saveDoc, saveRes) ->
+					throw saveErr if saveErr
+					res.redirect '/'+req.params.id
+			else 
+				res.redirect '/'+req.params.id
+	else
+		res.redirect '/'+req.params.id
+	
+
 app.post '/:id/delete', (req, res) ->
 	storyId=req.params.id
 	scene.findById storyId, (err, doc) ->

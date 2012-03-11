@@ -1,0 +1,29 @@
+div.row
+  - if (everyauth.loggedIn)
+    div.span4
+        div.well
+            form.form-horizontal(method="post")
+                .control-group
+                    h1 Edit this Scene
+                
+                .control-group
+                    input.input-large(type="text", id="title", name="title", placeholder="Title of the image", value= doc.title) 
+                .control-group
+                    input.input-large(type="text", id="url", name="url", placeholder="URL to image", value= doc.url)
+                .control-group
+                    input.input-large(type="text", id="found", name="found", placeholder="Please link the Thread/Site where this image came from", value= doc.found)
+                .control-group
+                    input.input-large(type="text", id="creator", name="creator", placeholder="Who created this image? Who is the &copy; owner?", value= doc.creator)
+                .control-group
+                    textarea.input-large(name="body",  id="body", rows="2", placeholder="Please enter a short description here.")= doc.body
+                .control-group
+                    input.btn.btn-primary(type="submit", value="Edit Scene.") 
+                    | 
+                    input.btn(type="reset", value="Reset")
+    .span8
+        .well
+            img
+  - else 
+    div.span12
+        div.well
+            p You are not logged in. Editing Images is only allowed for logged-in Users. 

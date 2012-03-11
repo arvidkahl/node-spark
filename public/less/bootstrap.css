@@ -3687,9 +3687,20 @@ h1 {
   color: #0088cc;
 }
 .sceneTitle {
-  margin-top: -5px;
+  margin-top: -10px;
   margin-bottom: 10px;
 }
-.info p i {
+.highlight span {
   color: #0088cc;
+}
+.highlight:hover span {
+  color: white;
+}
+.twitterImage {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #0088cc;
+  border-radius: 5px;
+  vertical-align: middle;
+  margin-top: -2px;
 }
