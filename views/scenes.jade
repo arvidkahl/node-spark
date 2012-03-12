@@ -1,5 +1,6 @@
 div.row#sceneRow
   div.span12  
+    h6#scenesLoading Scenes are being loaded...
     ul#scenes
       - each doc in docs
         li
@@ -14,10 +15,6 @@ div.row#sceneRow
           
 script
  $(window).load(function(){
+   $("#scenesLoading").addClass("hide");
    $('#scenes li').wookmark({container:$('#scenes'),offset:5,itemWidth:260,autoResize:true});
   });
- 
- 
-// h1= article.title + "("+i+")"
-// div.created #{(new Date(article.created_at)).toGMTString()}
- 

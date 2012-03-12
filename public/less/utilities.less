@@ -28,6 +28,7 @@ body {
 
 h1 {
   color:@linkColor;
+  text-shadow: 1px 1px 1spx darken(@linkColor, 35%);
 }
 
 .sceneTitle {
@@ -35,14 +36,21 @@ h1 {
   margin-bottom: 10px;
 }
 
-.highlight span {
-  color: @linkColor;
+.highlight span{
+  color: lighten(@linkColor, 45%);
 }
 
 .highlight:hover span{
-  color: white;
+  color: lighten(@linkColor, 60%);
 }
 
+.highlightLogin a{
+	color:@white;
+}
+
+.highlightLogin a:hover {
+	color:@linkColor !important;
+}
 .twitterImage {
   width: 18px;
   height: 18px;

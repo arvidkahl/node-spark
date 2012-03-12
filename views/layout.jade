@@ -4,12 +4,11 @@ html
     include bootstrap
     title= title
   body
-    div.navbar.navbar-fixed-top
+    div.navbar.navbar-fixed-top#sparkNavBar
       div.navbar-inner
         div.container-fluid
           a(href='/').brand 
-            i.icon-fire.icon-white
-            | 
+            i.icon-asterisk.icon-white
             span Spark.
           div.nav-collapse
             ul.nav
@@ -18,26 +17,26 @@ html
                   span Inspire me! 
               li
                 a(href='/scenes')
-                  i.icon-book.icon-white 
-                  | 
                   span Browse Scenes
+              li.divider-vertical
               li
                 a(href='/new') 
-                  i.icon-file.icon-white 
-                  | 
+                  //i.icon-file.icon-white 
+                  //| 
                   span Add Scene
               li.divider-vertical
               li
                 a(href='#') 
-                  i.icon-envelope.icon-white 
-                  | 
+                  //i.icon-envelope.icon-white 
+                  //| 
                   span Contact
+              li.divider-vertical
               li
                 a(href='/howto')
-                  i.icon-info-sign.icon-white 
-                  | 
+                  //i.icon-info-sign.icon-white 
+                  //| 
                   span HowTo
-            p.navbar-text.pull-right
+            p.navbar-text.pull-right.highlightLogin
               - if (everyauth.loggedIn)
                 span= "Logged in as "
                 img.twitterImage(src=everyauth.twitter.user.profile_image_url)
@@ -68,3 +67,12 @@ html
           |, which is just plain awesome. It's using 
           a(href="http://www.iriscouch.com/") IrisCouch 
           | to host the Scenes and Stories. 
+    script
+     $(function(){
+       $('#sparkNavBar div.navbar-inner').noisy({
+        'intensity' : 1,
+        'size' : '139',
+        'opacity' : 0.05,
+        'fallback' : '',
+        'monochrome' : true});
+       });

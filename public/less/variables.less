@@ -8,8 +8,11 @@
 // --------------------------------------------------
 
 // Links
-@linkColor:             #08c;
+@linkColor:             #03518A; //08c
 @linkColorHover:        darken(@linkColor, 15%);
+
+@linkColorComplementary: lighten(spin(@linkColor, 180), 15%);
+
 
 // Grays
 @black:                 #000;
@@ -66,13 +69,13 @@
 
 // Navbar
 @navbarHeight:                    40px;
-@navbarBackground:                @grayDarker;
-@navbarBackgroundHighlight:       @grayDark;
+@navbarBackground:                darken(@linkColor, 15%);
+@navbarBackgroundHighlight:       darken(@linkColor, 10%);
 @navbarLinkBackgroundHover:       transparent;
 
-@navbarText:                      @grayLight;
-@navbarLinkColor:                 @grayLight;
-@navbarLinkColorHover:            @white;
+@navbarText:                      @white;
+@navbarLinkColor:                 lighten(@linkColor, 15%);
+@navbarLinkColorHover:            lighten(@linkColor, 25%);
 
 // Form states and alerts
 @warningText:             #c09853;
