@@ -39,11 +39,11 @@ div.row
   div.span6
       .well
         h1.sceneTitle= doc.title+" "
-          small added by #{doc.createUserName}
         div.created.hide #{(new Date(doc.created_at)).toGMTString()}
         div.image
           a#scene(href=doc.url)
             img(src=doc.url) 
+          small.pull-right added by #{doc.createUserName}
           script
             $(function(){$('#scene').lightBox({overlayOpacity:0.9});});
         - if (everyauth.userId == doc.createUserId)

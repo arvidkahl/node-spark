@@ -7,10 +7,15 @@
         a.btn.btn-primary(href="/howto") Show me how it works! »
         | 
         a.btn(href="/random") Take me to a scene already! »
+.row
+  div.span12
+    .well
+      h1 Hello!
+      p Welcome to Spark. This is a platform for authors like you who want to find inspiration in concept art from all over the internet. You can add Stories to the concept artpieces (which are called Scenes) and share them to inspire others.  
 .row#indexRandomScenes
   div.span4
     .well 
-      h2 Check!
+      h2 Check.
       a(href='/'+docs[0]._id)
         div.image
           img(id=docs[0]._id,src=docs[0].url, alt=docs[0].body) 
@@ -21,7 +26,7 @@
       
   div.span4
     .well
-      h2 These!
+      h2 These.
       a(href='/'+docs[1]._id)
         div.image
           img(id=docs[1]._id,src=docs[1].url, alt=docs[1].body) 
