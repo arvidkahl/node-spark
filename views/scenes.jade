@@ -13,7 +13,9 @@ div.row#sceneRow
               a.btn(href= doc._id ) Show me the Stories »
           
 script
- $('#scenes li').wookmark({container:$('#scenes'),offset:5,itemWidth:260,autoResize:true});
+ $(window).load(function(){
+   $('#scenes li').wookmark({container:$('#scenes'),offset:5,itemWidth:260,autoResize:true});
+  });
  
  
 // h1= article.title + "("+i+")"
