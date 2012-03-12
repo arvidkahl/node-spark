@@ -5,6 +5,11 @@ cradle = require 'cradle'
 class Articler
     constructor: (host, port, collection) ->
         @.connect = new cradle.Connection host, port, {
+            secure: false
+            auth: {
+                username: config.mainDBUser
+                password: config.mainDBPass	
+            }
             cache: true
             raw: false
         }

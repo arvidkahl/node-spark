@@ -26,7 +26,14 @@ app.configure () ->
 	app.use exp.methodOverride()
 	app.use exp.bodyParser()
 	app.use exp.cookieParser()
-	app.use exp.session {secret: 'nawollenwirdochmalsehn', store: new sessionDB({host: config.sessionDBHost,name: config.sessionDBName, auth: {username: config.sessionDBUser, password: config.sessionDBPass}, reapInterval: 600000, compactInterval: 300000})}
+	app.use exp.session {secret: 'nawollenwirdochmalsehn', store: new sessionDB({
+		host: config.sessionDBHost,
+		name: config.sessionDBName, 
+		username: config.sessionDBUser, 
+		password: config.sessionDBPass, 
+		reapInterval: 600000, 
+		compactInterval: 300000
+		})}
 	app.use exp.compiler { src: __dirname + '/public', dest: __dirname + '/public', enable: ['less'] }
 	app.use exp.static __dirname + '/public'	
 	app.use auth.middleware()
