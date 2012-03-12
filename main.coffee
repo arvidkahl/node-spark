@@ -27,7 +27,7 @@ app.configure () ->
 	app.use exp.bodyParser()
 	app.use exp.cookieParser()
 	app.use exp.session {secret: 'nawollenwirdochmalsehn', store: new sessionDB({host: config.sessionDBHost,name: config.sessionDBName, auth: {username: config.sessionDBUser, password: config.sessionDBPass}, reapInterval: 600000, compactInterval: 300000})}
-#	app.use exp.compiler { src: __dirname + '/public', dest: __dirname + '/public', enable: ['less'] }
+	app.use exp.compiler { src: __dirname + '/public', dest: __dirname + '/public', enable: ['less'] }
 	app.use exp.static __dirname + '/public'	
 	app.use auth.middleware()
 
@@ -222,5 +222,5 @@ app.post '/:id/save/:commentId', (req, res) ->
 			res.redirect '/'+req.params.id
 		
 # Run App
-app.listen 14904
-console.log 'Server running at http://localhost:14904/'
+app.listen config.appPort
+console.log 'Spark running on port '+config.appPort
