@@ -1,0 +1,15 @@
+{
+   "_id": "_design/sparks",
+   "language": "javascript",
+   "views": {
+       "all": {
+           "map": "function(doc) {\n  emit(null, doc);\n}"
+       },
+       "byid": {
+           "map": "function(doc) {if(doc._id){emit(doc._id, doc);}}"
+       },
+       "allbyid": {
+           "map": "function(doc) {if(doc.url){emit(doc._id, null);}}"
+       }
+   }
+}
