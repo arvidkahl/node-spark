@@ -44,7 +44,25 @@ html
                 a(href="/logout")= "Logout"
               - else
                 a(href= "/auth/twitter")= "Login with Twitter"          
-    div.container!= body      
+    div.container
+     - if (typeof(flashError) != "undefined" ||  (typeof(flashInfo) != "undefined"))
+      div.row.notices
+        .span12
+         - if (typeof(flashError) != "undefined")
+          - if (flashError != '')
+            .alert.alert-error
+              a.close(data-dismiss='alert')= "x"
+              strong Oops!  
+              - for singleFlash in flashError
+                span= singleFlash
+         - if (typeof(flashInfo) != "undefined")
+          - if (flashInfo != '')
+            .alert.alert-success
+              a.close(data-dismiss='alert')= "x"
+              strong Fantastic!  
+              - for singleFlash in flashInfo
+                span= singleFlash
+      !=body      
       footer
         p &copy; 
           a(href= "http://www.arvidkahl.de")="Arvid Kahl"
@@ -69,6 +87,7 @@ html
           | to host the Scenes and Stories. 
     script
      $(function(){
+       $('.alert').alert();
        $('#sparkNavBar div.navbar-inner').noisy({
         'intensity' : 1,
         'size' : '139',

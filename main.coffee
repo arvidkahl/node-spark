@@ -55,6 +55,8 @@ app.get '/', (req, res) ->
 			locals: {
 				title: 'Spark.'
 				docs: threeDocs
+				flashError: req.flash('error') || ''
+				flashInfo: req.flash('info') || ''
 			}
 		}
 
@@ -64,6 +66,8 @@ app.get '/scenes', (req, res) ->
 			locals: {
 				title: 'Spark.'
 				docs: docs
+				flashError: req.flash('error') || ''
+				flashInfo: req.flash('info') || ''
 			}
 		}	
 		
@@ -71,6 +75,8 @@ app.get '/new', (req, res) ->
 	res.render 'new', {
 		locals: {
 			title: 'Spark.'
+			flashError: req.flash('error') || ''
+			flashInfo: req.flash('info') || ''
 				}
 			}	
 
@@ -89,8 +95,11 @@ app.post '/new', (req, res) ->
 			created_at: new Date()
 			stories: []
 		}, (err, returnedDoc, returnedData) ->
+			req.flash 'info', 'Scene was successfully created! Now add a Story!'
 			res.redirect('/'+returnedData.id)
-	else res.redirect('/')
+	else 
+		req.flash 'error', 'Scene was not created. You are not logged in.'
+		res.redirect('/')
 
 app.get '/concept', (req, res) ->
 	fs.readFile 'CONCEPT.md', 'ascii', (err, data) ->
@@ -107,12 +116,16 @@ app.get '/random', (req, res) ->
 		
 app.get '/:id', (req, res) ->
 	scene.findById req.params.id, (err, doc) ->
+		flashInfo = req.flash 'info'
+		flashError = req.flash 'error'
 		if doc 
 			res.render 'single', {
 				locals:{
 					title:"Spark."
 					id: req.params.id
 					doc: doc.value
+					flashInfo: flashInfo || ''
+					flashError: flashError || ''
 				}
 			}
 		else
@@ -126,6 +139,8 @@ app.get '/:id/edit', (req, res) ->
 					title:"Spark."
 					id: req.params.id
 					doc: doc.value
+					flashError: req.flash('error') || ''
+					flashInfo: req.flash('info') || ''
 				}
 			}
 		else
@@ -144,10 +159,13 @@ app.post '/:id/edit', (req, res) ->
 				newDoc.creator = req.param 'creator'
 				scene.saveById req.params.id, newDoc, (saveErr, saveDoc, saveRes) ->
 					throw saveErr if saveErr
+					req.flash 'info', 'Scene successfully edited.'
 					res.redirect '/'+req.params.id
 			else 
+				req.flash 'error', 'Scene not edited. You are not the owner of this Scene.'
 				res.redirect '/'+req.params.id
 	else
+		req.flash 'error', 'Scene not edited. You are not logged in.'
 		res.redirect '/'+req.params.id
 	
 
@@ -159,6 +177,7 @@ app.post '/:id/delete', (req, res) ->
 			if (doc.value.createUserId == uid)
 				scene.deleteById storyId, doc.value._rev, (deleteErr, deleteRes) ->
 					throw deleteErr if deleteErr
+					req.flash 'info', 'Scene was deleted. Aww.'
 		res.redirect '/'
 		
 app.post '/:id/add', (req, res) ->
@@ -176,20 +195,17 @@ app.post '/:id/add', (req, res) ->
 			}
 			
 			hash = crypto.createHmac('sha1', 'abcdeg').update(newStory.title+newStory.story+newStory.createUserId).digest('hex')
-			
-			newStory._id=hash
-			
+			newStory._id=hash			
 			tempDoc.stories.push newStory
-			
 			scene.saveById req.params.id, tempDoc, (saveErr, doc, saveRes) ->
 				throw saveErr if saveErr
+				req.flash 'info', 'Story was added to this Scene. Thank you!'
 				res.redirect('/'+req.params.id)
 		else
-			console.log "could not retrieve original document"
+			req.flash 'error', 'That did not work.'
 			res.redirect('/'+req.params.id)
 
 app.post '/:id/delete/:commentId', (req, res) ->
-	console.log "finding..."
 	scene.findById req.params.id, (err, doc) ->
 		newStoryUserId = 'not authed'
 		newStories = []
@@ -203,9 +219,10 @@ app.post '/:id/delete/:commentId', (req, res) ->
 		if (newStoryUserId == req.session.auth.userId)
 			scene.saveById req.params.id, doc.value, (saveErr, saveDoc, saveRes) ->
 				throw saveErr if saveErr
-				res.notice = 'Saved.'
+				req.flash 'info', 'The Story is now gone. Care to write another one?'
 				res.redirect '/'+req.params.id
 		else 
+			req.flash 'error', 'You are not the owner of this Story. Someone will get mad!'
 			res.redirect '/'+req.params.id
 	
 
@@ -224,8 +241,10 @@ app.post '/:id/save/:commentId', (req, res) ->
 		if (newStoryUserId == req.session.auth.userId)
 			scene.saveById req.params.id, doc.value, (saveErr, saveDoc, saveRes) ->
 				throw saveErr if saveErr
+				req.flash 'info', 'Story successfully changed.'
 				res.redirect '/'+req.params.id
 		else 
+			req.flash 'error', 'That was not your Story.'
 			res.redirect '/'+req.params.id
 		
 # Run App
