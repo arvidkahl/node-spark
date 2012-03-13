@@ -11,7 +11,8 @@ div.row#sceneRow
             div
               h6= doc.title 
                 small.pull-right= "by "+doc.createUserName
-              a.btn(href= doc._id ) Show me the Stories »
+              - var storiesNum = (doc.stories.length > 0 ? "Show me the Stories! ("+doc.stories.length+" available)" : "No Stories yet. Write one!")
+              a.btn(href= doc._id )= storiesNum+" »"
           
 script
  $(window).load(function(){
