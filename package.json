@@ -17,6 +17,7 @@
      "node-markdown":"*",
      "connect-couchdb":"*",
      "less":"*",
-     "cradle":"*"
+     "cradle":"*",
+     "gzippo":"*"
   }
 }

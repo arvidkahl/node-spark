@@ -11,6 +11,7 @@ fs = require 'fs'
 md = require('node-markdown').Markdown
 auth = require './auth.coffee'
 crypto = require 'crypto'
+gzippo = require 'gzippo'
 
 process.on 'uncaughtException', (err) ->
 	console.log err.stack
@@ -35,7 +36,8 @@ app.configure () ->
 		compactInterval: 300000
 		})}
 	app.use exp.compiler { src: __dirname + '/public', dest: __dirname + '/public', enable: ['less'] }
-	app.use exp.static __dirname + '/public'	
+	#app.use exp.static __dirname + '/public'	
+	app.use gzippo.staticGzip __dirname+'/public'
 	app.use auth.middleware()
 
 auth.helpExpress app
