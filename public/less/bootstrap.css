@@ -3754,3 +3754,9 @@ footer {
   padding-top: 75px;
   padding-bottom: 50px;
 }
+.storyDisplay pre {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.thumbnail {
+  margin-bottom: 10px;
+}

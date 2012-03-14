@@ -35,7 +35,8 @@ html
                 a(href='/howto')
                   //i.icon-info-sign.icon-white 
                   //| 
-                  span HowTo
+                  span How does it work?
+
             p.navbar-text.pull-right.highlightLogin
               - if (everyauth.loggedIn)
                 span= "Logged in as "
@@ -45,23 +46,23 @@ html
               - else
                 a(href= "/auth/twitter")= "Login with Twitter"          
     div.container
-     - if (typeof(flashError) != "undefined" ||  (typeof(flashInfo) != "undefined"))
-      div.row.notices
-        .span12
-         - if (typeof(flashError) != "undefined")
-          - if (flashError != '')
-            .alert.alert-error
-              a.close(data-dismiss='alert')= "x"
-              strong Oops!  
-              - for singleFlash in flashError
-                span= singleFlash
-         - if (typeof(flashInfo) != "undefined")
-          - if (flashInfo != '')
-            .alert.alert-success
-              a.close(data-dismiss='alert')= "x"
-              strong Fantastic!  
-              - for singleFlash in flashInfo
-                span= singleFlash
+      - if (typeof(flashError) != "undefined" ||  (typeof(flashInfo) != "undefined"))
+        div.row.notices
+          .span12
+           - if (typeof(flashError) != "undefined")
+            - if (flashError != '')
+              .alert.alert-error
+                a.close(data-dismiss='alert')= "x"
+                strong Oops!  
+                - for singleFlash in flashError
+                  span= singleFlash
+           - if (typeof(flashInfo) != "undefined")
+            - if (flashInfo != '')
+              .alert.alert-success
+                a.close(data-dismiss='alert')= "x"
+                strong Fantastic!  
+                - for singleFlash in flashInfo
+                  span= singleFlash
       !=body      
       footer
         p &copy; 
@@ -85,9 +86,10 @@ html
           |, which is just plain awesome. It's using 
           a(href="http://www.iriscouch.com/") IrisCouch 
           | to host the Scenes and Stories. 
-          br
-          | You can find the code of Spark on  
-          a(href="https://www.github.com/arvidkahl/node-spark")="github.com/arvidkahl/node-spark"  
+          
+        p You can find the code that runs Spark on  
+          strong
+            a(href="https://www.github.com/arvidkahl/node-spark")="GitHub.com"  
           |.
     script
      $(function(){

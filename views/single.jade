@@ -68,10 +68,11 @@ div.row
             form(method="post", action='/'+id+'/delete/'+story._id)
               input.btn.btn-danger.btn-mini(type='submit', value='Delete your Story')
           div.alert.alert-info(id=story._id+'_alert',onclick=switcheroo) Click here to edit this Story.  
-        div(id=story._id+'_text')
+        div.storyDisplay(id=story._id+'_text')
           h4= story.title
           h6.storyUserName written by #{story.createUserName}
-          p.story= story.story
+          //p.storyDisplay
+          pre= story.story
     
     
     - if (everyauth.loggedIn)

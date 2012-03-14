@@ -1,0 +1,77 @@
+.row.howtoRow
+  .span12
+   .hero-unit
+    h1 Welcome to Spark.
+    p This article will provide you with a concise overview of the functionality that Spark provides.
+
+.row.howtoRow
+  .span2
+        a.thumbnail.howtoImage(href="/img/scene-display.png")
+          img(src="/img/thumb.scene-display.jpg", alt="How a Scene is displayed in Spark.")
+      
+        a.thumbnail.howtoImage(href="/img/scene-buttons.png")
+          img(src="/img/thumb.scene-buttons.jpg", alt="How a Scene can be edited or deleted in Spark.")
+      
+        a.thumbnail.howtoImage(href="/img/scene-new.png")
+          img(src="/img/thumb.scene-new.jpg", alt="How a new Scene can be added in Spark.")
+    
+  .span10
+   .well  
+    h1 Scenes 
+      small will inspire you. This is a fact.
+    h3 What they are
+    p Scenes are images, collected and referenced from the vast oceans of imagination which reside on the internet in the form of concept art communities, imageboards and artists blogs. Spark uses a referencing-only-policy, so no Scene is actually hosted on this platform. Only hyperlinks to the images are stored in Sparks database, along with information on the original artist and a link to the website on the internet where the image was originally found. This serves the purpose of giving the author both credit and a chance to be discovered by the users of Spark.
+    h3 How can you add them
+    p Once you are 
+      a(href="#loggingIn") logged in
+      |, you can visit the 
+      a(href="/new") page to add a Scene  
+      | and submit the hyperlinks to the image URL, original website and the name of the artist. You can also add a description to the image that will be shown alongside it.
+    h3 How you can edit and delete them
+    p If you are  
+      a(href="#loggingIn") logged in
+      |, you can easily edit a Scene just like how you could when you initially created it. Just click the "Edit Scene" button on the Scenes page.
+    p Deleting a scene can be accomplished from the Scenes page as well, provided you are logged in.
+    p
+      strong Editing and deleting a Scene are only allowed to the person who originally added it to Spark. 
+    h3 Where you can find them
+    p There are many marvellous graphic communities all over the internet, like CGTalk or Conceptart.org.
+
+.row.howtoRow
+  .span10
+   .well
+    h1 Stories 
+      small are where you can shine.
+    h3 What they are
+    p Stories are what they are supposed to be. Narratives, thoughts, literary sketches. They can range from a few short words describing an event to a full-length story with characters that come to life. Stories are what you make of them. Surprise us.
+    h3 How you can add them
+    p Once you are  
+      a(href="#loggingIn") logged in
+      |, you can add your own Story to whatever Scene you would like. Write ahead, but be aware: Spark does not support revisioning yet. What you delete will, for now, be gone for good.
+    h3 How you can edit and delete them
+    p If logged in, you can edit the complete text and title of your Stories and, if you really think you should, delete them. Please remember: every thought expressed in a story can be the stroke of lightning that ignites another visitors imagination. Don't throw away a chance of bringing joy to another imagineer just because you might not like what you wrote. It's all good.
+  .span2
+        a.thumbnail.howtoImage(href="/img/story-show-visitor.png")
+          img(src="/img/thumb.story-show-visitor.jpg", alt="How a Story looks to a visitor who is not logged in.")
+        a.thumbnail.howtoImage(href="/img/story-show-loggedIn.png")
+          img(src="/img/thumb.story-show-loggedIn.jpg", alt="How a Story looks to a logged in user.")
+        a.thumbnail.howtoImage(href="/img/story-edit.png")
+          img(src="/img/thumb.story-edit.jpg", alt="How a new Story can be edited or deleted in Spark.")
+.row.howtoRow
+  .span6
+   .well
+    a(name="loggingIn")
+    h1 Logging in 
+      small is fairly easy.
+    p Right now, you can easily get the privilege of being able to create Scenes and add Stories to Scenes by logging in with your Twitter account. Spark will add other authentication possibilities later on, but right now, there is Twitter. And while you're at it, I'm there too as 
+      a(href="http://www.twitter.com/arvidkahldev") @arvidkahldev
+      |. Works great for instant feedback.
+  .span6
+   .well
+    h1 Provide feedback 
+      small - it helps!
+    p If you find errors, unexpected behavior or things that seem questionnable or insulting to you, do not hesitate to contact me at  
+      a(href="mailto:mail@arvidkahl.de") mail@arvidkahl.de 
+      |. Twitter works too. 
+script
+  $(function(){$('.howtoImage').lightBox({overlayOpacity:0.5});});

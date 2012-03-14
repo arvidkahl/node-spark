@@ -106,6 +106,13 @@ app.get '/concept', (req, res) ->
 		throw err if err
 		res.end md data
 
+app.get '/howto', (req, res) ->
+	res.render 'howto', {
+		locals: {
+			title: 'Spark.'
+		}
+	}
+
 app.get '/random', (req, res) ->
 	scene.findAllIds (err, ids) ->
 		if err
