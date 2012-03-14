@@ -3748,3 +3748,9 @@ footer {
   text-align: center;
   margin-top: 10px;
 }
+#scenesLoading {
+  text-align: center;
+  width: 100%;
+  padding-top: 75px;
+  padding-bottom: 50px;
+}
