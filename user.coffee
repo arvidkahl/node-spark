@@ -15,6 +15,16 @@ class User
         }
         @.db = @.connect.database collection
 
+    findByTwitterId: (mykey, callback) ->
+      @.db.view 'spark-user/byTwitterId', {key: JSON.stringify(mykey)}, (err, res) ->
+        if (err)
+            callback err, null
+        else 
+           if res.length>0
+             callback null, res[0]
+           else 
+             callback null, res
+
     findById: (mykey, callback) ->
       @.db.view 'spark-user/byid', {key: JSON.stringify(mykey)}, (err, res) ->
         if (err)

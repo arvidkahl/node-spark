@@ -48,9 +48,6 @@ scene = new Articler config.mainDBHost, config.mainDBPort, config.mainDB
 
 app.get '/', (req, res) ->
 	console.log req.user
-	if req.user is []
-		console.log "Push new user to db!"
-	else "No need to push to db!"
 	scene.findAll (err, docs) ->
 		threeDocs = []
 		for tempDoc in [1..3]
