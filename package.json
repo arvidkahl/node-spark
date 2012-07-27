@@ -1,5 +1,5 @@
 {
-  "node" : "0.6.12",
+  "node" : "0.6.17",
   "name" : "spark",
   "description" : "picturing ideas",
   "url" : "http://spark.nodester.com",
