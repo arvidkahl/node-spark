@@ -41,8 +41,9 @@ html
             p.navbar-text.pull-right.highlightLogin
               - if (everyauth.loggedIn)
                 span= "Logged in as "
-                img.twitterImage(src=everyauth.twitter.user.profile_image_url)
-                span= " "+ everyauth.twitter.user.name +" - "
+                - if (user.twitter)
+                 img.twitterImage(src=user.twitter.profile_image_url) 
+                span= " "+ user.name +" - "
                 a(href="/logout")= "Logout"
               - else
                 a(href= "/auth/twitter")= "Login with Twitter"          
@@ -80,7 +81,7 @@ html
           a(href= "http://coffeescript.org/")="Coffee-Script" 
           |, 
           a(href= "https://github.com/tomgallacher/gzippo")="gzippo" 
-          | and 
+          |  and 
           a(href= "http://twitter.github.com/bootstrap/")="Twitter Bootstrap"
           |.
           br

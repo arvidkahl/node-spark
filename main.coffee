@@ -47,6 +47,7 @@ Articler = require('./articler.coffee').Articler
 scene = new Articler config.mainDBHost, config.mainDBPort, config.mainDB
 
 app.get '/', (req, res) ->
+	console.log req.user
 	scene.findAll (err, docs) ->
 		threeDocs = []
 		for tempDoc in [1..3]
