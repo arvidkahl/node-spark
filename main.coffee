@@ -73,6 +73,14 @@ app.get '/scenes', (req, res) ->
 				flashInfo: req.flash('info') || ''
 			}
 		}	
+
+app.get '/contact', (req, res) ->
+	res.render 'contact',{
+		locals: {
+			title: 'Spark.'
+		}
+	
+	}
 		
 app.get '/new', (req, res) ->
 	res.render 'new', {
