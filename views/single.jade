@@ -45,7 +45,7 @@ div.row
             img(src=doc.url) 
           small.pull-right added by #{doc.createUserName}
           script
-            $(function(){$('#scene').lightBox({overlayOpacity:0.9});});
+            $(function(){$('#scene').lightBox({overlayOpacity:0.9,imageBtnNext:"img/lightbox-btn-next.gif",imageBtnPrev:"img/lightbox-btn-prev.gif",imageBtnClose:"img/lightbox-btn-close.gif"});});
         - if (everyauth.userId == doc.createUserId)
           - var editLink = "/"+doc._id+'/edit' 
           a.editScene.btn.btn-mini.btn-warning(href=("/"+doc._id+'/edit')) Edit Scene
