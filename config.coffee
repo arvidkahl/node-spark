@@ -1,6 +1,6 @@
 config = {}
 
-config.appPort = process.env.port || process.env.SPARK_APPPORT
+config.appPort = process.env.PORT || process.env.port || 5000 || process.env.SPARK_APPPORT
 config.mainDBPort = process.env.SPARK_MAINDBPORT || 5984
 config.sessionDBHost = config.mainDBHost = process.env.SPARK_MAINDBHOST || 'localhost'
 config.sessionDBUser = config.mainDBUser = process.env.SPARK_MAINDBUSER || 'username'
@@ -13,7 +13,7 @@ config.twitterConsumerSecret = process.env.SPARK_TWITTERCONSUMERSECRET || 'twitt
 
 module.exports = config
 
-# views for the user database 
+# views for the user database
 #       "all": {
 #           "map": "function(doc) {  emit(doc._id, doc);}"
 #       },
@@ -22,8 +22,8 @@ module.exports = config
 #       },
 #       "byTwitterId": {
 #           "map": "function(doc) {if(doc.twitter.id) emit(doc._id,doc); }"
-#       
-# view for scene database 
+#
+# view for scene database
 #       "all": {
 #           "map": "function(doc) {\n  emit(null, doc);\n}"
 #       },
