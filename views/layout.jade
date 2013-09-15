@@ -7,7 +7,7 @@ html
     div.navbar.navbar-fixed-top#sparkNavBar
       div.navbar-inner
         div.container-fluid
-          a(href='/').brand 
+          a(href='/').brand
             i.icon-asterisk.icon-white
             span Spark.
           div.nav-collapse
@@ -21,32 +21,32 @@ html
                   span Browse Scenes
               li.divider-vertical
               li
-                a(href='/new') 
-                  //i.icon-file.icon-white 
-                  //| 
+                a(href='/new')
+                  //i.icon-file.icon-white
+                  //|
                   span Add Scene
               li.divider-vertical
               li
-                a(href='/contact') 
-                  //i.icon-envelope.icon-white 
-                  //| 
+                a(href='/contact')
+                  //i.icon-envelope.icon-white
+                  //|
                   span Contact
               li.divider-vertical
               li
                 a(href='/howto')
-                  //i.icon-info-sign.icon-white 
-                  //| 
+                  //i.icon-info-sign.icon-white
+                  //|
                   span How does it work?
 
             p.navbar-text.pull-right.highlightLogin
               - if (everyauth.loggedIn)
                 span= "Logged in as "
                 - if (user.twitter)
-                 img.twitterImage(src=user.twitter.profile_image_url) 
+                 img.twitterImage(src=user.twitter.profile_image_url)
                 span= " "+ user.name +" - "
                 a(href="/logout")= "Logout"
               - else
-                a(href= "/auth/twitter")= "Login with Twitter"          
+                a(href= "/auth/twitter")= "Login with Twitter"
     div.container
       - if (typeof(flashError) != "undefined" ||  (typeof(flashInfo) != "undefined"))
         div.row.notices
@@ -55,45 +55,45 @@ html
             - if (flashError != '')
               .alert.alert-error
                 a.close(data-dismiss='alert')= "x"
-                strong Oops!  
+                strong Oops!
                 - for singleFlash in flashError
                   span= singleFlash
            - if (typeof(flashInfo) != "undefined")
             - if (flashInfo != '')
               .alert.alert-success
                 a.close(data-dismiss='alert')= "x"
-                strong Fantastic!  
+                strong Fantastic!
                 - for singleFlash in flashInfo
                   span= singleFlash
-      !=body      
+      !=body
       footer
-        p &copy; 
+        p &copy;
           a(href= "http://www.arvidkahl.de")="Arvid Kahl"
-          | . This service is built with 
+          | . This service is built with
           a(href= "http://nodejs.org")= "Node.js"
-          |, 
+          |,
           a(href= "http://www.expressjs.com")="Express"
-          |, 
+          |,
           a(href= "http://couchdb.apache.org/")="CouchDB"
-          |, 
-          a(href= "http://lesscss.org/")="LESS" 
-          |, 
-          a(href= "http://coffeescript.org/")="Coffee-Script" 
-          |, 
-          a(href= "https://github.com/tomgallacher/gzippo")="gzippo" 
-          |  and 
+          |,
+          a(href= "http://lesscss.org/")="LESS"
+          |,
+          a(href= "http://coffeescript.org/")="Coffee-Script"
+          |,
+          a(href= "https://github.com/tomgallacher/gzippo")="gzippo"
+          |  and
           a(href= "http://twitter.github.com/bootstrap/")="Twitter Bootstrap"
           |.
           br
-          | It is hosted on 
-          a(href="http://www.nodester.com/") Nodester
-          |, which is just plain awesome. It's using 
-          a(href="http://www.iriscouch.com/") IrisCouch 
-          | to host the Scenes and Stories. 
-          
-        p You can find the code that runs Spark on  
+          | It is hosted on
+          a(href="http://www.heroku.com/") Heroku
+          |, which is just plain awesome. It's using
+          a(href="http://www.iriscouch.com/") IrisCouch
+          | to host the Scenes and Stories.
+
+        p You can find the code that runs Spark on
           strong
-            a(href="https://www.github.com/arvidkahl/node-spark")="GitHub.com"  
+            a(href="https://www.github.com/arvidkahl/node-spark")="GitHub.com"
           |.
     script
      $(function(){
